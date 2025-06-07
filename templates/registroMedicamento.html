@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}{% if medicamento %}Editar{% else %}Registrar{% endif %} Medicamento{% endblock %}
+
+{% block content %}
+    <h1>{% if medicamento %}Editar{% else %}Registrar{% endif %} Medicamento</h1>
+    
+    <div class="registration-form">
+        <form method="POST" action="{% if medicamento %}{{ url_for('medicamento.editar', id=medicamento.id) }}{% else %}{{ url_for('medicamento.registrar') }}{% endif %}">
+            <div class="form-group">
+                <!-- <label for="nombre">Nombre medicamento</label> -->
+                <input type="text" id="nombre" name="nombre"
+                       value="{{ medicamento.nombre if medicamento }}" 
+                       placeholder="Nombre del medicamento" required>
+            </div>
+            
+            <div class="form-group">
+                <!-- <label for="tipo">Tipo de medicamento</label> -->
+                <select id="tipo" name="tipo" required>
+                    <option value="">Tipo de medicamento</option>
+                    <option value="Analgésico" {% if medicamento and medicamento.tipo == 'Analgésico' %}selected{% endif %}>Analgésico</option>
+                    <option value="Antibiótico" {% if medicamento and medicamento.tipo == 'Antibiótico' %}selected{% endif %}>Antibiótico</option>
+                    <option value="Antiinflamatorio" {% if medicamento and medicamento.tipo == 'Antiinflamatorio' %}selected{% endif %}>Antiinflamatorio</option>
+                    <option value="Antipirético" {% if medicamento and medicamento.tipo == 'Antipirético' %}selected{% endif %}>Antipirético</option>
+                    <option value="Antihistamínico" {% if medicamento and medicamento.tipo == 'Antihistamínico' %}selected{% endif %}>Antihistamínico</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <!-- <label for="stock">Cantidad de stock</label> -->
+                <input type="number" id="stock" name="stock" 
+                       value="{{ medicamento.stock if medicamento }}" 
+                       placeholder="Cantidad en stock" 
+                       min="0" required>
+            </div>
+            
+            <hr>
+            <div class="form-group">
+                <button type="submit" class="btn">
+                    {% if medicamento %}Actualizar{% else %}Registrar{% endif %} medicamento
+                </button>
+            </div>
+            <!-- <a href="{% if medicamento %}{{ url_for('medicamento.listar') }}{% else %}{{ url_for('index') }}{% endif %}" 
+               class="btn back-btn">
+                Cancelar
+            </a> -->
+        </form>
+    </div>
+{% endblock %}

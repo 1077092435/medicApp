@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Listado de Medicamentos{% endblock %}
+
+{% block content %}
+<h1>Medicamentos</h1>
+
+
+{% if medicamentos %}
+<table class="medicamentos-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Stock</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for med in medicamentos %}
+        <tr>
+            <td>{{ med.id }}</td>
+            <td>{{ med.nombre }}</td>
+            <td>{{ med.tipo }}</td>
+            <td>{{ med.stock }}</td>
+            
+            <td>
+                <a href="{{ url_for('medicamento.editar', id=med.id) }}" class="action-btn edit-btn">Editar</a>
+                <a href="{{ url_for('medicamento.eliminar', id=med.id) }}" class="action-btn delete-btn"
+                    onclick="return confirm('¿Eliminar este medicamento?')">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class="btn-agregar">
+    <a href="{{ url_for('medicamento.registrar') }}" class="btn-agregar agregar">+</a>
+</div>
+{% else %}
+<p style="display: flex; justify-content: center;">No hay medicamentos registrados</p>
+<div class="btn-agregar">
+    <a href="{{ url_for('medicamento.registrar') }}" class="btn-agregar agregar">+</a>
+</div>
+{% endif %}
+{% endblock %}

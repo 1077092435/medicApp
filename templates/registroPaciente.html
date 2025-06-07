@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}{% if paciente %}Editar{% else %}Registrar{% endif %} Paciente{% endblock %}
+
+{% block content %}
+    <h1>{% if paciente %}Editar{% else %}Registrar{% endif %} Paciente</h1>
+    
+    <div class="registration-form">
+        <form method="POST" action="{% if paciente %}{{ url_for('paciente.editar', id=paciente.id) }}{% else %}{{ url_for('paciente.registrar') }}{% endif %}">
+            <div class="form-group">
+                <input type="text" id="nombre" name="nombre" 
+                       value="{{ paciente.nombre if paciente }}"
+                       placeholder="Nombre completo" required>
+            </div>
+            
+            <div class="form-group">
+                <input type="number" id="cedula" name="cedula" 
+                       value="{{ paciente.cedula if paciente }}"
+                       placeholder="Cédula" 
+                       min="1" 
+                       pattern="\d*"
+                       {% if paciente %}readonly{% endif %}
+                       required>
+            </div>
+
+            <div class="form-group">
+                <input type="text" id="direccion" name="direccion" 
+                       value="{{ paciente.direccion if paciente }}"
+                       placeholder="Dirección" required>
+            </div>
+            
+            <hr>
+            
+            <button type="submit" class="btn">
+                {% if paciente %}Actualizar{% else %}Registrar{% endif %} paciente
+            </button>
+            <!-- <a href="{% if paciente %}{{ url_for('paciente.listar') }}{% else %}{{ url_for('index') }}{% endif %}" 
+               class="btn back-btn">
+                Volver {% if paciente %}al listado{% else %}al inicio{% endif %}
+            </a> -->
+        </form>
+    </div>
+{% endblock %}
