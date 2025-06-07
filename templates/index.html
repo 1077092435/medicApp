@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>MedicApp</h1>
+    
+    <!-- <div class="menu">
+        <img src="../static/images/GestionarMedicamentos.png">
+        <a href="{{ url_for('medicamento.listar') }}" class="btn">Gestionar Medicamento</a>
+
+        <img src="../static/images/GestionarNovedades.png">
+        <a href="{{ url_for('novedad.listar') }}" class="btn">Gestionar Novedades</a>
+
+        <img src="../static/images/GestionarPacientes.png">
+        <a href="{{ url_for('paciente.listar') }}" class="btn">Gestionar Pacientes</a>
+    </div> -->
+
+
+    <div class="management-menu">
+    <a href="{{ url_for('medicamento.listar') }}" class="management-card">
+        <img src="{{ url_for('static', filename='images/GestionarMedicamentos.png') }}" alt="Medicamentos">
+        <span>Gestionar Medicamentos</span>
+    </a>
+    
+    <a href="{{ url_for('novedad.registrar') }}" class="management-card">
+        <img src="{{ url_for('static', filename='images/RegistroDeAplicacion.png') }}" alt="Registro">
+        <span>Registro de aplicación</span>
+    </a>
+    
+    <a href="{{ url_for('paciente.listar') }}" class="management-card">
+        <img src="{{ url_for('static', filename='images/GestionarPacientes.png') }}" alt="Pacientes">
+        <span>Gestionar Pacientes</span>
+    </a>
+    
+    <a href="{{ url_for('novedad.listar') }}" class="management-card">
+        <img src="{{ url_for('static', filename='images/GestionarNovedades.png') }}" alt="Novedades">
+        <span>Gestionar Novedades</span>
+    </a>
+</div>
+{% endblock %}
