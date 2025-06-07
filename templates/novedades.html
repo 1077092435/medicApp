@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Listado de Novedades{% endblock %}
+
+{% block content %}
+    <h1>Novedades Registradas</h1>
+
+
+    {% if novedades %}
+        <table class="medicamentos-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Enfermera</th>
+                    <th>Paciente</th>
+                    <th>Medicamento</th>
+                    <th>Cantidad</th>
+                    <th>Fecha</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for novedad in novedades %}
+                    <tr>
+                        <td>{{ novedad.id }}</td>
+                        <td>{{ novedad.nombre_enfermera }}</td>
+                        <td>{{ novedad.nombre_paciente }}</td>
+                        <td>{{ novedad.medicamento }}</td>
+                        <td>{{ novedad.cantidad }}</td>
+                        <td>{{ novedad.fecha_registro }}</td>
+                        <td>
+                            <a href="{{ url_for('novedad.editar', id=novedad.id) }}" class="action-btn edit-btn">Editar</a>
+                            <a href="{{ url_for('novedad.eliminar', id=novedad.id) }}" class="action-btn delete-btn"
+                                onclick="return confirm('¿Eliminar esta novedad?')">Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="btn-agregar">
+            <a href="{{ url_for('novedad.registrar') }}" class="btn-agregar agregar">+</a>
+        </div>
+        {% else %}
+        <p style="display: flex; justify-content: center;">No hay novedades registradas</p>
+        <div class="btn-agregar">
+            <a href="{{ url_for('novedad.registrar') }}" class="btn-agregar agregar">+</a>
+        </div>
+    {% endif %}
+{% endblock %}

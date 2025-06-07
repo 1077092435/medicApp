@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sansita+One&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/styles.css">
+</head>
+
+<body>
+    <div class="container" style="background-image: url('../static/images/fondoBanner.jpg'); background-repeat: no-repeat; background-size: cover;">
+        <h1>MedicApp</h1>
+        <div class="form-group">
+
+            <img src="{{ url_for('static', filename='images/logoGrande.png') }}" alt="" style="max-width: 15rem;">
+        </div>
+
+        <div class="registration-form">
+
+            <div class="form-group">
+                <!-- <label for="nombre">Nombre medicamento</label> -->
+                <img src="{{ url_for('static', filename='images/Mail.png') }}" style="max-width: 30px;position: absolute;margin:0.3rem 15rem 0 0;">
+                <input type="email" id="nombre" name="nombre"
+                    placeholder=" Correo electronico" required>
+            </div>
+            <div class="form-group">
+                <!-- <label for="nombre">Nombre medicamento</label> -->
+                 <img src="{{ url_for('static', filename='images/Lock.png') }}" style="max-width: 30px;position: absolute;margin:0.3rem 15rem 0 0;">
+                <input type="password" id="nombre" name="nombre" placeholder="Contraseña" required>
+            </div>
+            <div class="form-group" style="display: block;">
+                <a href="{{ url_for('index') }}" class="logout-btn">
+                    <button type="submit" class="btn">
+
+                        Iniciar sesión
+                    </button>
+                </a>
+
+            </div>
+
+
+        </div>
+    </div>
+</body>
+
+</html>

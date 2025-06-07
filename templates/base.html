@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sistema de Medicamentos{% endblock %}</title>
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sansita+One&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+
+        <div class="menu-overlay" id="menuOverlay"></div>
+
+        <header class="main-header">
+            <!-- <div class="logo">MedicApp</div> -->
+            <button class="menu-toggle" id="menuToggle">
+                <img src="{{ url_for('static', filename='images/menu.png') }}" alt="Menú" class="menu-icon">
+            </button>
+        </header>
+
+        <nav class="dropdown-menu" id="dropdownMenu">
+            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <a href="{{ url_for('index') }}" style="padding: 0;">
+                    <img src="{{ url_for('static', filename='images/logo.png') }}">
+                </a>
+                
+                <button class="menu-toggle" id="cerrarMenu" style="margin-right: 35px;">
+                    <img src="{{ url_for('static', filename='images/menu.png') }}" alt="Cerrar" class="close-icon"
+                    style="width: 30px; height: 30px;">
+                </button>
+            </div>
+            <h1 class="medicAppBaner">MedicApp</h1>
+            <a href="{{ url_for('medicamento.listar') }}">Gestionar medicamentos</a>
+            <a href="{{ url_for('paciente.listar') }}">Gestionar pacientes</a>
+            <a href="{{ url_for('novedad.registrar') }}">Registro de aplicación</a>
+            <a href="{{ url_for('novedad.listar') }}">Gestionar novedades</a>
+            <div style="display: flex; align-items: center; width: 100%; margin-top: 5rem;justify-content: flex-end;">
+                <img src="{{ url_for('static', filename='images/Power.png') }}" style="max-width: 30px;">
+                <a href="{{ url_for('index') }}" class="logout-btn">Cerrar sesión</a>
+            </div>
+        </nav>
+
+        {% block content %}{% endblock %}
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+</body>
+
+</html>
